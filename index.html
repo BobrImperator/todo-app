@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Todo App</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main>
-      <div class="container">
-        <div class="todo">
-          Wszystkie przedmioty
-          <ul class="list" element-all-todos>
-            <li>
-              Zrob pranie
-            </li>
-          </ul>
-        </div>
-        <div class="todo">
-          Wykonane
-          <ul class="list">
-          </ul>
-        </div>
+      <div>
+        <ul element-all-todos>
+          Todo items
+          <li>Do laundry</li>
+        </ul>
+        <ul>
+          Done items
+          <li>Do water change for fish</li>
+        </ul>
       </div>
-    
+
       <form element-add-todo-form>
         <input name="name" type="text" />
         <input name="id" type="text" />
         <button type="submit">Submit</button>
       </form>
     </main>
-	<script src="todo-app.js"></script>
+    <script src="todo-app.js"></script>
   </body>
 </html>
