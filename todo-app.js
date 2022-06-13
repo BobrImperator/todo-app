@@ -28,4 +28,6 @@ class TodoApp {
   }
 }
 
-new TodoApp();
+document.addEventListener('DOMContentLoaded', () => {
+  new TodoApp();
+}, { once: true });
