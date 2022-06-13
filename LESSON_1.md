@@ -233,5 +233,3 @@ What this bit does is as follows:
     Classes are initialized with a `new` keyword, like you can see at the bottom of the snippet.
 - Define a "renderTodos" `method`.
 - Initialize the application immediately as the script is loaded by the browser.
-
-### Adding new todos
