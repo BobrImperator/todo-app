@@ -2,6 +2,7 @@ const ALL_TODOS_ELEMENT = "[element-all-todos]";
 const DONE_TODOS_ELEMENT = "[element-done-todos]";
 
 class TodoItem {
+  id;
   name;
   isDone = false;
 }
@@ -16,7 +17,15 @@ const clearList = (selector) => {
 
 const renderTodo = function todoRenderer(list, item) {
   let li = document.createElement("li");
+  let button = document.createElement("button");
+  
+  let dataId = document.createAttribute("data-id");
+  dataId.value = item.id;
+
   li.innerText = item.name;
+  button.innerText = "Remove";
+  li.attributes.setNamedItem(dataId);
+  li.appendChild(button);
   list.appendChild(li);
 };
 
@@ -57,6 +66,11 @@ class TodoApp {
       newTodo.name = formData.get("name");
       let isDone = formData.get("isDone");
       newTodo.isDone = Boolean(isDone);
+    
+      let todoIds = this.todos.map((todo) => todo.id);
+      let maxId = Math.max(...todoIds);
+
+      newTodo.id = this.todos.length > 0 ? ++maxId : 1;
 
       event.target.reset();
       this.todos.push(newTodo);
@@ -69,13 +83,20 @@ class TodoApp {
     let list = document.querySelector(sourceElement);
     let targetList = document.querySelector(targetElement);
 
+    // @TODO Fix event listeners
+    // make it so each li has it's own eventListener
+    // button also needs it's own eventListener
     list.addEventListener("click", (event) => {
       let child = event.srcElement;
       
-      let todo = this.todos.find((todo) => todo.name === child.innerText);
-      todo.isDone = !todo.isDone;
-      
-      this.renderTodos();
+      let dataId = child.attributes.getNamedItem("data-id");
+
+      if (dataId.value) {
+        let todo = this.todos.find((todo) => todo.id === Number(dataId.value));
+        todo.isDone = !todo.isDone;
+        
+        this.renderTodos();
+      }
       console.log(this.todos);
       // targetList.appendChild(child);
       // Mutable https://developer.mozilla.org/en-US/docs/Glossary/Mutable
