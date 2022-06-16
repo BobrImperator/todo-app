@@ -8,6 +8,7 @@ class TodoApp {
   constructor() {
     this.renderTodos();
     this.formComponent();
+    this.registerClick();
   }
 
   renderTodos() {
@@ -37,6 +38,22 @@ class TodoApp {
 
       this.todos.push(newTodo);
       this.renderTodos();
+    });
+  }
+
+  registerClick() {
+    let list = document.querySelector("[element-all-todos]");
+    let targetList = document.querySelector("[element-done-todos]");
+
+    list.addEventListener('click', (event) => {
+      let child = event.srcElement;
+      targetList.appendChild(child);
+      // Mutable https://developer.mozilla.org/en-US/docs/Glossary/Mutable
+      // let index = this.todos.findIndex((todo) => todo.name === child.innerText);
+      // this.todos.splice(index, 1);
+
+      // Immutable https://developer.mozilla.org/en-US/docs/Glossary/Immutable
+      this.todos = this.todos.filter((todo) => todo.name !== child.innerText);
     });
   }
 }
