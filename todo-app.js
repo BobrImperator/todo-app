@@ -8,7 +8,8 @@ class TodoApp {
   constructor() {
     this.renderTodos();
     this.formComponent();
-    this.registerClick();
+    this.registerClick("[element-all-todos]", "[element-done-todos]");
+    this.registerClick("[element-done-todos]", "[element-all-todos]");
   }
 
   renderTodos() {
@@ -36,14 +37,15 @@ class TodoApp {
       let newTodo = new TodoItem();
       newTodo.name = formData.get("name");
 
+      event.target.reset();
       this.todos.push(newTodo);
       this.renderTodos();
     });
   }
 
-  registerClick() {
-    let list = document.querySelector("[element-all-todos]");
-    let targetList = document.querySelector("[element-done-todos]");
+  registerClick(sourceElement, targetElement) {
+    let list = document.querySelector(sourceElement);
+    let targetList = document.querySelector(targetElement);
 
     list.addEventListener('click', (event) => {
       let child = event.srcElement;
