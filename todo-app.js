@@ -1,5 +1,6 @@
 class TodoItem {
   name;
+  isDone = false;
 }
 
 class TodoApp {
@@ -36,10 +37,13 @@ class TodoApp {
      
       let newTodo = new TodoItem();
       newTodo.name = formData.get("name");
+      let isDone = formData.get("isDone");
+      newTodo.isDone = Boolean(isDone);
 
       event.target.reset();
       this.todos.push(newTodo);
       this.renderTodos();
+      console.log(this.todos);
     });
   }
 
