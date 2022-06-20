@@ -24,7 +24,11 @@ const renderTodo = function todoRenderer(list, item, app) {
     app.renderTodos();
   });
 
-  button.addEventListener("click", (event) => {});
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    app.todos = app.todos.filter((todo) => todo !== item);
+    app.renderTodos();
+  });
 
   li.innerText = item.name;
   button.innerText = "Remove";
