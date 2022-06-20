@@ -19,24 +19,15 @@ const renderTodo = function todoRenderer(list, item, app) {
   let li = document.createElement("li");
   let button = document.createElement("button");
 
-  let dataId = document.createAttribute("data-id");
-  dataId.value = item.id;
-
   li.addEventListener("click", (event) => {
-    let dataId = event.srcElement.attributes.getNamedItem("data-id");
-
-    if (dataId.value) {
-      let todo = app.todos.find((todo) => todo.id === Number(dataId.value));
-      todo.isDone = !todo.isDone;
-
-      app.renderTodos();
-    }
+    item.isDone = !item.isDone;
+    app.renderTodos();
   });
-  button.addEventListener("click", () => {});
+
+  button.addEventListener("click", (event) => {});
 
   li.innerText = item.name;
   button.innerText = "Remove";
-  li.attributes.setNamedItem(dataId);
   li.appendChild(button);
   list.appendChild(li);
 };
