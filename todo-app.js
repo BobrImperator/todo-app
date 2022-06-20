@@ -15,12 +15,24 @@ const clearList = (selector) => {
   }
 };
 
-const renderTodo = function todoRenderer(list, item) {
+const renderTodo = function todoRenderer(list, item, app) {
   let li = document.createElement("li");
   let button = document.createElement("button");
-  
+
   let dataId = document.createAttribute("data-id");
   dataId.value = item.id;
+
+  li.addEventListener("click", (event) => {
+    let dataId = event.srcElement.attributes.getNamedItem("data-id");
+
+    if (dataId.value) {
+      let todo = app.todos.find((todo) => todo.id === Number(dataId.value));
+      todo.isDone = !todo.isDone;
+
+      app.renderTodos();
+    }
+  });
+  button.addEventListener("click", () => {});
 
   li.innerText = item.name;
   button.innerText = "Remove";
@@ -35,8 +47,6 @@ class TodoApp {
   constructor() {
     this.renderTodos();
     this.formComponent();
-    this.registerClick(ALL_TODOS_ELEMENT, DONE_TODOS_ELEMENT);
-    this.registerClick(DONE_TODOS_ELEMENT, ALL_TODOS_ELEMENT);
   }
 
   renderTodos() {
@@ -47,9 +57,9 @@ class TodoApp {
 
     for (let item of this.todos) {
       if (item.isDone) {
-        renderTodo(doneTodoList, item);
+        renderTodo(doneTodoList, item, this);
       } else {
-        renderTodo(allTodoList, item);
+        renderTodo(allTodoList, item, this);
       }
     }
   }
@@ -66,7 +76,7 @@ class TodoApp {
       newTodo.name = formData.get("name");
       let isDone = formData.get("isDone");
       newTodo.isDone = Boolean(isDone);
-    
+
       let todoIds = this.todos.map((todo) => todo.id);
       let maxId = Math.max(...todoIds);
 
@@ -76,35 +86,6 @@ class TodoApp {
       this.todos.push(newTodo);
       this.renderTodos();
       console.log(this.todos);
-    });
-  }
-
-  registerClick(sourceElement, targetElement) {
-    let list = document.querySelector(sourceElement);
-    let targetList = document.querySelector(targetElement);
-
-    // @TODO Fix event listeners
-    // make it so each li has it's own eventListener
-    // button also needs it's own eventListener
-    list.addEventListener("click", (event) => {
-      let child = event.srcElement;
-      
-      let dataId = child.attributes.getNamedItem("data-id");
-
-      if (dataId.value) {
-        let todo = this.todos.find((todo) => todo.id === Number(dataId.value));
-        todo.isDone = !todo.isDone;
-        
-        this.renderTodos();
-      }
-      console.log(this.todos);
-      // targetList.appendChild(child);
-      // Mutable https://developer.mozilla.org/en-US/docs/Glossary/Mutable
-      // let index = this.todos.findIndex((todo) => todo.name === child.innerText);
-      // this.todos.splice(index, 1);
-
-      // Immutable https://developer.mozilla.org/en-US/docs/Glossary/Immutable
-      // this.todos = this.todos.filter((todo) => todo.name !== child.innerText);
     });
   }
 }
