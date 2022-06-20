@@ -28,6 +28,7 @@ const renderTodo = function todoRenderer(list, item, app) {
     event.stopPropagation();
     app.todos = app.todos.filter((todo) => todo !== item);
     app.renderTodos();
+    app.saveTodos();
   });
 
   li.innerText = item.name;
@@ -37,11 +38,13 @@ const renderTodo = function todoRenderer(list, item, app) {
 };
 
 class TodoApp {
-  todos = [];
+  todos;
 
   constructor() {
+    this.todos = this.getTodos();
     this.renderTodos();
     this.formComponent();
+    this.clearTodosComponent();
   }
 
   renderTodos() {
@@ -80,8 +83,27 @@ class TodoApp {
       event.target.reset();
       this.todos.push(newTodo);
       this.renderTodos();
-      console.log(this.todos);
+      this.saveTodos();
     });
+  }
+
+  clearTodosComponent() {
+    const button = document.querySelector("[element-clear-elements]");
+    button.addEventListener("click", () => this.clearTodos());
+  }
+
+  saveTodos() {
+    window.localStorage.setItem('todos', JSON.stringify(this.todos));
+  }
+
+  getTodos() {
+    return JSON.parse(window.localStorage.getItem('todos')) || [];
+  }
+
+  clearTodos() {
+    window.localStorage.clear();
+    this.todos = [];
+    this.renderTodos();
   }
 }
 
