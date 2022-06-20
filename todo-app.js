@@ -101,9 +101,11 @@ class TodoApp {
   }
 
   clearTodos() {
-    window.localStorage.clear();
-    this.todos = [];
-    this.renderTodos();
+    if (window.confirm("Are you sure you want to REMOVE ALL ELEMENTS?!?!?!?")) {
+      window.localStorage.clear();
+      this.todos = [];
+      this.renderTodos();
+    }
   }
 }
 
