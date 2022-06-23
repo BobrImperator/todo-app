@@ -2,6 +2,62 @@
 
 Related changes: https://github.com/BobrImperator/todo-app/pull/1/files
 
+**Notice**
+Some code explanation will be included in the code snippets as comments.
+Remember that in javascript a comment is created with two backward slashes `//`.
+The comments most of the time will refer to the line below them.
+
+## Lexicon
+
+#### Assignment
+```js
+// Create a variable called 'count' and `assign` 0 to it.
+let count = 0;
+console.log(count) // 0
+
+// Assign 3 to the 'count' variable
+count = 3;
+console.log(count) // 3
+```
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment
+#### Mutable value - Mutation - Mutability
+The act of 'mutation' often can be understood as simply changing a value of some property.
+Especially if the given value is an object or an instance of a class.
+
+**class instances and objects share the way we work with them, change their properties, call their methods.
+For now feel free to completely treat them in the same way, but remember that they DO have different functions and uses.**
+
+So basically "to mutate" means "to change" or even considering the above section - "to assign".
+
+So let's say I'd ask you "mutate a 'count' property"
+The answer would be:
+```js
+// Assign, Mutate, Change 'count' property to a value of 4
+count = 4;
+
+// Assign, Mutate, Change 'count' property to a value of count + 1
+count = count + 1;
+```
+
+Let's say I'd ask you to "change the 'name' of todo"
+```js
+// Create a variable called 'todo' and assing it a value of new TodoItem,
+// this creates an instance of the TodoItem class.
+let todo = new TodoItem();
+
+// Assign, Mutate, Change 'name' property of 'todo' to a value of "Do dishes"
+todo.name = "Do dishes";
+```
+So the above can be read in several ways:
+"Change todo's 'name' property"
+"Mutate todo's 'name' property"
+"Mutate todo"
+"Assign a new value to 'name' property of 'todo' variable"
+
+https://developer.mozilla.org/en-US/docs/Glossary/Mutable
+
+
 ### Ideally script tags should be in the `<head></head>` of the document
 
 In this lesson, one of the changes is that we've moved the `script` tag from the document body
@@ -44,7 +100,15 @@ Luckily, browser emits a lot of useful events that we can use to avoid this prob
 The event we're looking for is called "DOMContentLoaded", the browser emits it only **after** the whole document is parsed and ready.
 
 ```js
+// todo-app.js
+// Register 'EventListener' for 'DOMContentLoaded' event on the document element,
+// provide a handler function as second argument to the `addEventListener` method.
+// provide additional option as third argument tot the `addEventListener` method
+// it configures the 'EventListener' to call our function only 'once' and detach itself from the document element,
+// so it never runs again.
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize TodoApp class
+  // This creates an Instance of a TodoApp
   new TodoApp();
 }, { once: true });
 ```
@@ -63,26 +127,46 @@ Now we'll implement a form that will let us create more todos.
 Let's start off by calling a method called `formComponent` inside the `constructor` of TodoApp `class`:
 
 ```js
+  // todo-app.js
   constructor() {
-    ..
+    // calls the formComponent method
+    // Remember that `this` refers to the instance of TodoApp class.
+    // You don't need to pay too much attention to what instance exactly is,
+    // just remember that `this` is a special keyword that let us refer to the class.
     this.formComponent();
   }
 ```
 
 and for `formComponent` method implementation:
 ```js
+  // todo-app.js
   formComponent() {
+    // Query the document for element with attribute element-form
     const todoForm = document.querySelector("[element-form]");
-
+    // Register 'EventListener' for 'submit' event on the form element,
+    // provide a handler function as second argument to the `addEventListener` method.
     todoForm.addEventListener("submit", (event) => {
+      // call 'preventDefault' method on Event object.
+      // We'll go through as for why it's needed later.
       event.preventDefault();
 
+      // Get data from the form using FormData class.
+      // When FormData is initialized, it takes an additional argument to it's constructor,
+      // the argument being a form element which we can get from Event object by reading 'target' property.
       const formData = new FormData(event.target);
 
+      // Initialize a new TodoItem
       let newTodo = new TodoItem();
+      // assign a value to 'name' property of newTodo
+      // the value being the return value of `formData.get("name")` method.
+      // The get method argument being a value of name attribute,
+      // in this case name="name".
       newTodo.name = formData.get("name");
 
+      // Push the newly created newTodo to this.todos array
       this.todos.push(newTodo);
+
+      // Call renderTodos method, which wil re-render the todo lists.
       this.renderTodos();
     });
   }
@@ -91,15 +175,25 @@ and for `formComponent` method implementation:
 It's a pretty small function, but there's a bit going on
 
 ```html
-    <main>
-      ...
-      <form element-form>
-        <input type="text" name="name" />
-        <button type="submit">
-          Submit
-        </button>
-      </form>
-    </main>
+    <!-- index.html -->
+
+    <!-- Create form element and give the element an attribute called element-form-->
+    <form element-form>
+      <!--
+        Create input element inside the form 
+        set "type" attribute to "text", this will tell the browser what kind of input it should render.
+        set "name" attribute to "name", this will let us refer to the input value inside javascript i.e - formData.get("name")
+      -->
+      <input type="text" name="name" />
+
+      <!--
+        Create a button element, and set "type" attribute to "submit"
+        this will tell the browser that it should "submit" the form, and emit a SubmitEvent when the button is clicked.
+      -->
+      <button type="submit">
+        Submit
+      </button>
+    </form>
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/API/FormData
