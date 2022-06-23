@@ -58,7 +58,7 @@ So the above can be read in several ways:
 https://developer.mozilla.org/en-US/docs/Glossary/Mutable
 
 
-### Ideally script tags should be in the `<head></head>` of the document
+## Ideally script tags should be in the `<head></head>` of the document
 
 In this lesson, one of the changes is that we've moved the `script` tag from the document body
 to the document head.
@@ -121,7 +121,7 @@ A thing to consider here is that, even though the "DOMContentLoaded" is very use
 if we are creating and rendering the HTML elements client-side (with javascript).
 We shouldn't rely on the elements that are in the document, so later on we'll change the code to reflect that.
 
-### Creating new Todos
+## Creating new Todos
 
 Now we'll implement a form that will let us create more todos.
 Let's start off by calling a method called `formComponent` inside the `constructor` of TodoApp `class`:
