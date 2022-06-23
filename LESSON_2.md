@@ -81,6 +81,9 @@ Uncaught TypeError: Cannot read properties of null (reading 'lastChild')
 ```
 The application stopped working, so what's going on?!
 
+I don't want to dig into it too much *yet*, but know this: figuring this kind of stuff is pretty much 80% of a job of a programmer - trying to figure out what some error is, where it comes from and what causes it.
+I'll try to tackle this in some future lessons.
+
 Well, a thing to consider is that the browser is "parsing" the `document` (index.html) in top-to-bottom manner.
 Meaning that the javascript is loaded and run **before** any content inside the document's `body`.
 Which we rely on inside `renderTodos` method, because this is where we try to find the element with "element-all-todos" attribute,
