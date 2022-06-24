@@ -5,6 +5,11 @@ when I was making my first steps, one of the best repos that helped me was airbn
 
 I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to define and work with functions, methods etc.
 
+1. [Boolean](#boolean)
+2. [String](#string)
+3. [Number](#number)
+4. [Variables](#variables)
+
 ## Primitive values a.k.a Scalar values
 
 To put it simply, primitive value is a kind of value that is it's own reference.
@@ -12,7 +17,7 @@ We'll look into the specifics of references later together with object and array
 for now though, a good connection to make is that objects or arrays can keep other values inside them,
 while primitives are standalone and can't be changed, but only something new can be created based on them.
 
-### Boolean
+## Boolean
 
 ```js
 true;
@@ -24,7 +29,7 @@ false;
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-### String
+## String
 
 Strings can be created in 3 different ways, they have small differences, but at the end of the day they are a `string` value.
 
@@ -153,5 +158,9 @@ is the same as
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+## Variables
+
+
 
 ## Functions
