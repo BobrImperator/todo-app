@@ -36,22 +36,20 @@ Strings can be created in 3 different ways, they have small differences, but at 
 Quotes `""`
 
 ```js
-"";
+"a string";
 ```
 
 Single quotes a.k.a Ticks a.k.a Apostrophe `''`
 
 ```js
-"";
+"a string";
 ```
 
 Backticks ```` https://en.wikipedia.org/wiki/Backtick
 
 ```js
-``;
+`a string`;
 ```
-
-Let's see some examples... but things are never easy, I'm sorry.
 
 There's one additional thing to remember regarding strings, you'll notice the use of a Forward Slash `\`.
 It's an escaping charachter in JavaScript and most other languages.
@@ -61,8 +59,7 @@ The most common issue you might run into is when trying to write some English se
 'That's wonderful!';
 ```
 
-If you tried to run this code, you'd get a nice little error.
-We didn't launch yet, but "Houston, we've got a problem!"... ALREADY!?.
+If you tried to run this code, you'd get a nice little error:
 
 ```js
 Uncaught SyntaxError: Unexpected identifier
@@ -148,12 +145,12 @@ Floating point numbers that don't have a whole part to it, can also be written '
 Point five
 
 ```js
-0.5;
+.5;
 ```
 
 is the same as
 
-```
+```js
 0.5;
 ```
 
