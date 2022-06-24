@@ -59,7 +59,7 @@ The highlighting helps understand the issue a lot, the problem here is that from
 you're trying to create a `string` containing `'That'`, then read a variable called `s` and then...
 Damn, let's not go into that too deply, all you need to know is that Javascript is confused and it breaks.
 
-There are a few ways to work through it, the simplest one is use Quotes for the whole sentence:
+There are a few ways to work through it:
 
 Escape the inner Tick:
 ```js

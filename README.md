@@ -1,4 +1,5 @@
 Repo for teaching noobs
 
-- Lesson 1 [click](LESSON_1.md)
+- Syntaxes [click](./book/SYNTAX.md)
+- Lesson 1 [click](./book/LESSON_1.md)
 
