@@ -94,7 +94,7 @@ We can check this by using `debugger` and adding it right above the `new TodoApp
 It is a special keyword that stops browser from processing anything when it "encounters" a `debugger` in code. 
 
 
-![Check browser state with debugger](./check-document-with-debugger.png)
+![Check browser state with debugger](./assets/check-document-with-debugger.png)
 
 As shown, our "index.html" file is only parsed to the point when our javascript is loaded and nothing more.
 And our application fails because we try to reference an element that doesn't exist.
