@@ -1,5 +1,10 @@
+import mod from "./mod.js";
+import { MARIUSZ, MARIAN } from "./mod.js";
+console.log(mod, MARIUSZ, MARIAN);
+
 const ALL_TODOS_ELEMENT = "[element-all-todos]";
 const DONE_TODOS_ELEMENT = "[element-done-todos]";
+
 
 class TodoItem {
   id;
