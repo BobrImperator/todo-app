@@ -9,28 +9,31 @@
     <script type="module" src="todo-app.js"></script>
   </head>
   <body>
-    <main>
-
-      <div>
-        Todo items
+    <main class="main-container">
+      <div class="container">
         <!--
           #all-todos-list id-selectors
           .todo-list class-selectors
+          ul class-selectors
           [element-all-todos] attribute-selectors
           :first-child pseudo-selectors
+          +, ~ special selectors
+          https://www.w3schools.com/tags/tag_comment.asp
         -->
-        <ul
-          id="all-todos-list"
-          class="todo-list"
-          element-all-todos
-        >
-          <li>Do laundry</li>
-        </ul>
 
-        Done items
-        <ul element-done-todos>
-          <li>Do water change for fish</li>
-        </ul>
+        <div class="todo-container">
+          <h3> Todo items </h3>
+          <ul class="todo-list" element-all-todos>
+            <li>Do laundry</li>
+          </ul>
+        </div>
+
+        <div class="todo-container">
+          <h3> Done items </h3>
+          <ul class="todo-list" element-done-todos>
+            <li>Do water change for fish</li>
+          </ul>
+        </div>
       </div>
 
       <form element-form>
@@ -38,12 +41,8 @@
         <input type="text" name="name" />
         done?
         <input type="checkbox" name="isDone" />
-        <button type="submit">
-          Submit
-        </button>
-        <button type="reset">
-          Reset
-        </button>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
       </form>
 
       <button element-clear-elements>
