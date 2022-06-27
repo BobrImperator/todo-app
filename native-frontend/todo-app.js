@@ -1,14 +1,13 @@
-import { save, read } from './db.js';
+import {
+  TodoItem,
+  renderTodo,
+  saveTodos,
+  getTodos,
+  clearTodos,
+} from "./todo.js";
 
 const ALL_TODOS_ELEMENT = "[element-all-todos]";
 const DONE_TODOS_ELEMENT = "[element-done-todos]";
-
-
-class TodoItem {
-  id;
-  name;
-  isDone = false;
-}
 
 const clearList = (selector) => {
   let list = document.querySelector(selector);
@@ -18,34 +17,11 @@ const clearList = (selector) => {
   }
 };
 
-const renderTodo = function todoRenderer(list, item, app) {
-  let li = document.createElement("li");
-  let button = document.createElement("button");
-
-  li.addEventListener("click", (event) => {
-    item.isDone = !item.isDone;
-    app.renderTodos();
-    app.saveTodos();
-  });
-
-  button.addEventListener("click", (event) => {
-    event.stopPropagation();
-    app.todos = app.todos.filter((todo) => todo !== item);
-    app.renderTodos();
-    app.saveTodos();
-  });
-
-  li.innerText = item.name;
-  button.innerText = "Remove";
-  li.appendChild(button);
-  list.appendChild(li);
-};
-
 class TodoApp {
   todos;
 
   constructor() {
-    this.todos = this.getTodos();
+    this.todos = getTodos();
     this.renderTodos();
     this.formComponent();
     this.clearTodosComponent();
@@ -87,29 +63,18 @@ class TodoApp {
       event.target.reset();
       this.todos.push(newTodo);
       this.renderTodos();
-      this.saveTodos();
+      saveTodos(this.todos);
     });
   }
 
   clearTodosComponent() {
     const button = document.querySelector("[element-clear-elements]");
-    button.addEventListener("click", () => this.clearTodos());
-  }
-
-  saveTodos() {
-    save('todos', this.todos);
-  }
-
-  getTodos() {
-    return read('todos') || [];
-  }
-
-  clearTodos() {
-    if (window.confirm("Are you sure you want to REMOVE ALL ELEMENTS?!?!?!?")) {
-      window.localStorage.clear();
-      this.todos = [];
-      this.renderTodos();
-    }
+    button.addEventListener("click", () => {
+      clearTodos(() => {
+        this.todos = [];
+        this.renderTodos();
+      });
+    });
   }
 }
 
