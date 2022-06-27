@@ -22,6 +22,7 @@ class TodoApp {
 
   constructor() {
     this.todos = getTodos();
+    console.log(this.todos);
     this.renderTodos();
     this.formComponent();
     this.clearTodosComponent();

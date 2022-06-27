@@ -1,2 +1,30 @@
 @import "./normalize.css";
 
+.main-container {
+  padding: 8px;
+}
+
+.container {
+  display: flex;
+}
+
+.todo-container {
+  min-width: 200px;
+  min-height: 150px;
+}
+
+.todo-container > h3 {
+  text-transform: uppercase;
+}
+
+.todo-list > li:nth-child(even) {
+  background-color: #F4F0C6;
+}
+
+.todo-list > li:nth-child(odd) {
+  background-color: #F5F3E6;
+}
+
+.todo-list > li:not(:first-child) {
+  margin-top: 10px;
+}
