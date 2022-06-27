@@ -1,6 +1,4 @@
-import mod from "./mod.js";
-import { MARIUSZ, MARIAN } from "./mod.js";
-console.log(mod, MARIUSZ, MARIAN);
+import { save, read } from './db.js';
 
 const ALL_TODOS_ELEMENT = "[element-all-todos]";
 const DONE_TODOS_ELEMENT = "[element-done-todos]";
@@ -27,6 +25,7 @@ const renderTodo = function todoRenderer(list, item, app) {
   li.addEventListener("click", (event) => {
     item.isDone = !item.isDone;
     app.renderTodos();
+    app.saveTodos();
   });
 
   button.addEventListener("click", (event) => {
@@ -98,11 +97,11 @@ class TodoApp {
   }
 
   saveTodos() {
-    window.localStorage.setItem('todos', JSON.stringify(this.todos));
+    save('todos', this.todos);
   }
 
   getTodos() {
-    return JSON.parse(window.localStorage.getItem('todos')) || [];
+    return read('todos') || [];
   }
 
   clearTodos() {
