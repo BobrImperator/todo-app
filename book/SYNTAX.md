@@ -158,6 +158,64 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 ## Variables
 
+There are 3 types of variables `var`, `let`, `const`.
 
+The goto keyword for variable declaration is `let`, considering some nuance regarding `const` is also useful.
+`var` however is pretty much a thing of the past and I don't really see myself using it.
+It also has some weird behavior and this is why it was effectively replaced by `let`.
+
+The basic usage of variables with any of the keywords is pretty much the same.
+This is a 2 step process, but most of the time you'll see them as one-liners.
+
+Declaration step:
+
+```js
+let number;
+```
+
+When a variable has been only declared, and no value has been assigned to it, it's value will be `undefined`.
+
+Initialization / Assignment step:
+
+```js
+let number;
+number = .5;
+```
+
+Most of the time though both are done at the same time, like below, so we'll stick to that too.
+
+Declaration and Initialization examples:
+
+`let`
+```js
+let number = .5;
+let user = { name: "BobrImperator" };
+let userName = user.name; 
+
+let nothingYet; // undefined
+```
+
+`const`
+```js
+const number = .5;
+const user = { name: "BobrImperator" };
+const userName = user.name;
+
+const nothingYet; // undefined
+```
+
+`var`
+```js
+var number = .5;
+var user = { name: "BobrImperator" };
+var userName = user.name;
+
+var nothingYet; // undefined
+```
+
+I'd prefer to not explore the differences between yet as this relies on `scope` and `context`, so it's better to leave it for later chapters.
+
+https://javascript.info/var
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables
 
 ## Functions
