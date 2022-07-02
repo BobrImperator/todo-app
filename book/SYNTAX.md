@@ -12,7 +12,8 @@ I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to de
 5. [Functions](#functions)
 6. [Objects](#objects)
 7. [Methods](#methods)
-8. [Arrays](#arrays--loops)
+8. [Arrays](#arrays)
+9. [Loops](#loops)
 
 ## Primitive values a.k.a Scalar values
 
@@ -444,14 +445,52 @@ This is one of the nuances that is at most only worth mentioning for now.
 
 By a principle, if you want to create a `method` that uses it's "surrounding" object as a `context` (`this`), then just stick to the "Shorthand Syntax", and you'll be just fine.
 
-## Arrays & Loops
+## Arrays
 
 `Array` is a data structure that allows to store multiple values and references inside it.
 
 They are created with "Brackets" like this `[]`.
 
 Arrays are also a lot of times referred to as "lists" because it's a bit better sounding to say "A list of users", but ultimately in JavaScript lingo they are one and the same.
-A very simple example would be an array of numbers that we'll sum up together.
+A very simple example would be an array of numbers.
+
+```js
+// create an array of numbers called 'costs'
+const costs = [0.5, 1.25, 7, 9, 32];
+```
+
+We can read any value from the list by referring to them by their index:
+
+```js
+const costs = [0.5, 1.25, 7, 9, 32];
+
+// read the first number
+costs[0]; // 0.5
+
+// read the second number
+costs[1]; // 1.25
+
+// read the fourth number
+
+costs[3]; // 9
+
+// read the last number
+// we must subtract 1 from the length of the array
+// because costs.length is 5 (there are 5 elements in the list)
+// while indexes are zero-based (first index starts from 0)
+costs[costs.length - 1]; // 32
+```
+
+Indexes are zero-based, this is why the first element can be found under index "0" and not "1".
+Also if we want to access the last element, we must get the total length of the list and subtract 1 and as a result we receive the index of the last element.
+
+An index can only be read with "bracket" `[]` notation.
+
+Arrays on their own don't seem that useful, so let's enter [Loops][#loops].
+
+## Loops
+
+100% of time where's a list, there's a loop.
 
 ```js
 // create an array of numbers called 'costs'
@@ -463,10 +502,12 @@ const costs = [0.5, 1.25, 7, 9, 32];
 // The callback adds 'total' and 'cost' together
 costs.reduce((total, cost) => cost + total, 0); // 49.75
 ```
+
 In the example, we're "iterating over", "traversing" or "looping over" the whole "costs" list by calling the `reduce` method,
 we're not bothered here with the "how" of the `reduce` method.
 
 Let's do the same but without cheating, we'll create a loop that reads each value of an array by using their indexes.
+First we'll take a look at the good ol' classic `for` loop.
 
 ```js
 const costs = [0.5, 1.25, 7, 9, 32];
@@ -498,22 +539,20 @@ const sum = (list, total) => {
   }
 
   return total;
-}
+};
 
 const costs = [0.5, 1.25, 7, 9, 32];
 
-sum(costs, 0) // 49.75
+sum(costs, 0); // 49.75
 ```
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
 
 A little more complex example, would be to have an array of objects.
 We'll call it `transactions`.
 
 ```js
-const transactions = [
-  
-];
+const transactions = [];
 ```
-
 
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
