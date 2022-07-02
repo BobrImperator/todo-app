@@ -9,6 +9,10 @@ I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to de
 2. [String](#string)
 3. [Number](#number)
 4. [Variables](#variables)
+5. [Functions](#functions)
+6. [Objects](#objects)
+7. [Methods](#methods)
+8. [Arrays](#arrays)
 
 ## Primitive values a.k.a Scalar values
 
@@ -246,14 +250,14 @@ function add(a, b) {
 add(1, 2); // 3
 
 // a function called add assigned to a variable called 'x'
-let x = function add(a, b) {
+const x = function add(a, b) {
   return a + b;
 };
 
 x(1, 2); // 3
 
 // an anonymous function assigned to a variable called 'add'
-let add = function (a, b) {
+const add = function (a, b) {
   return a + b;
 };
 
@@ -264,20 +268,22 @@ an arrow function:
 
 ```js
 // an anonymous function assigned to a variable called 'add'
-let add = (a, b) => {
+const add = (a, b) => {
   return a + b;
 };
 
 add(1, 2); // 3
 
 // an anonymous function assigned to a variable called 'add'
-let add = (a, b) => a + b;
+const add = (a, b) => a + b;
 
 add(1, 2); // 3
 ```
 
 The arrow function doesn't require curly brackets `{}` to define where it's body is, as you can see above.
 Sometimes it's more convenient to create a one-liner function.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
 
 ## Objects
 
@@ -291,21 +297,84 @@ that data could be described as an `object` with `properties` describing a `User
 
 ```js
 // an object assign to a variable called 'user'
-let user = {
+const user = {
   name: "Bartłomiej",
   nickname: "BobrImperator",
 };
 ```
+
+Properties are a `key: value` pairs, on the left-hand side are keys, and on the right-side are their values.
 
 The above `object` has 2 `properties`:
 
 - a "name" with a value "Bartłomiej"
 - a "nickname" with a value "BobrImperator"
 
-Now it's super easy to pass user's data around, let's create a function that returns a `string` saying "Bartłomiej a.k.a BobrImperator".
+Object `properties` can be accessed with a "dot" `.` and "brackets" `[]` i.e
 
 ```js
+const user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+};
+
+user.name; // "Bartłomiej"
+
+user["nickname"]; // "BobrImperator"
+```
+
+You should always stick to using the "dot" `.` notation, but the "bracket" `[]` notation can also be useful.
+It's possible to use a variable to access an object's property:
+
+```js
+const displayKey = "nickname";
+
+const user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+};
+
+user.name; // "Bartłomiej"
+
+user[displayKey]; // "BobrImperator"
+```
+
+This is also true for creating new properties:
+
+```js
+const displayKey = "nickname";
+
+const user = {
+  name: "Bartłomiej",
+  [displayKey]: "BobrImperator",
+};
+
+user.name; // "Bartłomiej"
+
+user[displayKey]; // "BobrImperator"
+user.nickname; // "BobrImperator"
+```
+
+```js
+const displayKey = "nickname";
+
 let user = {
+  name: "Bartłomiej",
+  [displayKey]: "BobrImperator",
+};
+
+user[displayKey]; // BobrImperator;
+
+// Assign a new value "Bober" to "nickname" key;
+user[displayKey] = "Bober";
+
+user.nickname; // "Bober"
+```
+
+Given the above, let's create a function that returns a `string` saying "Bartłomiej a.k.a BobrImperator".
+
+```js
+const user = {
   name: "Bartłomiej",
   nickname: "BobrImperator",
 };
@@ -318,6 +387,8 @@ function printUser(user) {
 printUser(user); // "Bartłomiej a.k.a BobrImperator"
 ```
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+
 ## Methods
 
 With both `object` and `function` in the previous chapter, "methods" are a natural choice as the next one.
@@ -326,7 +397,7 @@ Methods are simply functions, with the exception being a part of some `object` a
 Let's bring the example from before, but make it so "printUser" is a "method" instead, while at it, let's rename it to just "print", so it's a bit neater 😎.
 
 ```js
-let user = {
+const user = {
   name: "Bartłomiej",
   nickname: "BobrImperator",
   // a method 'print' which takes no arguments
@@ -349,9 +420,9 @@ let user = {
   print() {
     return `${this.name} a.k.a ${this.nickname}`;
   },
- 
+
   // 'classic' long syntax
-  getName: function() {
+  getName: function () {
     return this.name;
   },
 };
@@ -359,7 +430,7 @@ let user = {
 // create a function and assign it as 'getNickname' property of 'user'
 user.getNickname = function () {
   return this.nickname;
-}
+};
 
 user.getName(); // Bartłomiej
 
@@ -373,12 +444,76 @@ This is one of the nuances that is at most only worth mentioning for now.
 
 By a principle, if you want to create a `method` that uses it's "surrounding" object as a `context` (`this`), then just stick to the "Shorthand Syntax", and you'll be just fine.
 
-## Arrays
+## Arrays & Loops
 
 `Array` is a data structure that allows to store multiple values and references inside it.
 
 They are created with "Brackets" like this `[]`.
 
 Arrays are also a lot of times referred to as "lists" because it's a bit better sounding to say "A list of users", but ultimately in JavaScript lingo they are one and the same.
+A very simple example would be an array of numbers that we'll sum up together.
 
-An example could be a list of bank transactions,
+```js
+// create an array of numbers called 'costs'
+const costs = [0.5, 1.25, 7, 9, 32];
+
+// Call 'reduce' method of an `array`
+// 'reduce' takes a function as first argument
+// and an initial value of 'total' as second argument.
+// The callback adds 'total' and 'cost' together
+costs.reduce((total, cost) => cost + total, 0); // 49.75
+```
+In the example, we're "iterating over", "traversing" or "looping over" the whole "costs" list by calling the `reduce` method,
+we're not bothered here with the "how" of the `reduce` method.
+
+Let's do the same but without cheating, we'll create a loop that reads each value of an array by using their indexes.
+
+```js
+const costs = [0.5, 1.25, 7, 9, 32];
+// create variable 'total', initialize it with value 0;
+let total = 0;
+
+// create a for loop
+for (let index = 0; index <= costs.length - 1; index = index + 1) {
+  // create variable 'cost', assign it with a value read from 'costs'
+  let cost = costs[index];
+
+  // assign 'total' variable a new value by adding 'total' and 'cost' together.
+  total = total + cost;
+}
+
+total; // 49.75
+```
+
+Let's make it a function:
+
+```js
+const sum = (list, total) => {
+  for (let index = 0; index <= list.length - 1; index = index + 1) {
+    // create variable 'value', assign it with a value read from 'list'
+    let value = list[index];
+
+    // assign 'total' variable a new value by adding 'total' and 'value' together.
+    total = total + value;
+  }
+
+  return total;
+}
+
+const costs = [0.5, 1.25, 7, 9, 32];
+
+sum(costs, 0) // 49.75
+```
+
+
+A little more complex example, would be to have an array of objects.
+We'll call it `transactions`.
+
+```js
+const transactions = [
+  
+];
+```
+
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
