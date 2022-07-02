@@ -145,7 +145,7 @@ Floating point numbers that don't have a whole part to it, can also be written '
 Point five
 
 ```js
-.5;
+0.5;
 ```
 
 is the same as
@@ -179,7 +179,7 @@ Initialization / Assignment step:
 
 ```js
 let number;
-number = .5;
+number = 0.5;
 ```
 
 Most of the time though both are done at the same time, like below, so we'll stick to that too.
@@ -187,15 +187,17 @@ Most of the time though both are done at the same time, like below, so we'll sti
 Declaration and Initialization examples:
 
 `let`
+
 ```js
-let number = .5;
+let number = 0.5;
 let user = { name: "BobrImperator" };
-let userName = user.name; 
+let userName = user.name;
 
 let nothingYet; // undefined
 ```
 
 `const`
+
 ```js
 const number = .5;
 const user = { name: "BobrImperator" };
@@ -205,8 +207,9 @@ const nothingYet; // undefined
 ```
 
 `var`
+
 ```js
-var number = .5;
+var number = 0.5;
 var user = { name: "BobrImperator" };
 var userName = user.name;
 
@@ -219,3 +222,163 @@ https://javascript.info/var
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables
 
 ## Functions
+
+Functions can be created in several ways too but there are essentially 2 types of functions, a function, and an arrow function.
+They are some kind of construct that allow to define some functionality that can be later used in code.
+Functions need to be called to perform whatever is inside them, and most of the time they also need to receive arguments when they are called.
+
+Sometimes a function call might also be referred to as function invocation, or running a function.
+If someone tells you to "run a function x", "invoke a function x", "call a function x" then they essentially mean the same thing i.e `x()`.
+
+a regular function:
+
+```js
+// a function called add that takes no arguments and returns nothing.
+function add() {}
+
+add(); // undefined
+
+// a function called add that takes two arguments called a and b
+function add(a, b) {
+  return a + b;
+}
+
+add(1, 2); // 3
+
+// a function called add assigned to a variable called 'x'
+let x = function add(a, b) {
+  return a + b;
+};
+
+x(1, 2); // 3
+
+// an anonymous function assigned to a variable called 'add'
+let add = function (a, b) {
+  return a + b;
+};
+
+add(1, 2); // 3
+```
+
+an arrow function:
+
+```js
+// an anonymous function assigned to a variable called 'add'
+let add = (a, b) => {
+  return a + b;
+};
+
+add(1, 2); // 3
+
+// an anonymous function assigned to a variable called 'add'
+let add = (a, b) => a + b;
+
+add(1, 2); // 3
+```
+
+The arrow function doesn't require curly brackets `{}` to define where it's body is, as you can see above.
+Sometimes it's more convenient to create a one-liner function.
+
+## Objects
+
+`Object` is a data structure that allows to store many `properties`, usually they are used to "describe" some kind of "Entity" like a "User".
+
+They are created with "Curly Braces" like this `{}`.
+
+For example, every single one of us has some kind of account, be it YouTube or Github.
+Those services would usually, and probably are keeping some kind of data about you or me,
+that data could be described as an `object` with `properties` describing a `User`.
+
+```js
+// an object assign to a variable called 'user'
+let user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+};
+```
+
+The above `object` has 2 `properties`:
+
+- a "name" with a value "Bartłomiej"
+- a "nickname" with a value "BobrImperator"
+
+Now it's super easy to pass user's data around, let's create a function that returns a `string` saying "Bartłomiej a.k.a BobrImperator".
+
+```js
+let user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+};
+
+// a function 'printUser' which takes a 'user' as an argument
+function printUser(user) {
+  return `${user.name} a.k.a ${user.nickname}`;
+}
+
+printUser(user); // "Bartłomiej a.k.a BobrImperator"
+```
+
+## Methods
+
+With both `object` and `function` in the previous chapter, "methods" are a natural choice as the next one.
+Methods are simply functions, with the exception being a part of some `object` and being able to do stuff in their `context`.
+
+Let's bring the example from before, but make it so "printUser" is a "method" instead, while at it, let's rename it to just "print", so it's a bit neater 😎.
+
+```js
+let user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+  // a method 'print' which takes no arguments
+  print() {
+    // `this` refers to the 'user' object, hence it's not necessary to pass the user as an argument anymore
+    return `${this.name} a.k.a ${this.nickname}`;
+  },
+};
+
+user.print(); // "Bartłomiej a.k.a BobrImperator"
+```
+
+There are few ways to create a method:
+
+```js
+let user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+  // Shorthand Syntax
+  print() {
+    return `${this.name} a.k.a ${this.nickname}`;
+  },
+ 
+  // 'classic' long syntax
+  getName: function() {
+    return this.name;
+  },
+};
+
+// create a function and assign it as 'getNickname' property of 'user'
+user.getNickname = function () {
+  return this.nickname;
+}
+
+user.getName(); // Bartłomiej
+
+user.print(); // "Bartłomiej a.k.a BobrImperator"
+
+user.getNickname(); // "BobrImperator"
+```
+
+It's important to note here that I don't use the "Arrow Function" here, the reason being the `context`.
+This is one of the nuances that is at most only worth mentioning for now.
+
+By a principle, if you want to create a `method` that uses it's "surrounding" object as a `context` (`this`), then just stick to the "Shorthand Syntax", and you'll be just fine.
+
+## Arrays
+
+`Array` is a data structure that allows to store multiple values and references inside it.
+
+They are created with "Brackets" like this `[]`.
+
+Arrays are also a lot of times referred to as "lists" because it's a bit better sounding to say "A list of users", but ultimately in JavaScript lingo they are one and the same.
+
+An example could be a list of bank transactions,
