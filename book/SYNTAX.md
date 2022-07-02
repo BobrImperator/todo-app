@@ -12,7 +12,7 @@ I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to de
 5. [Functions](#functions)
 6. [Objects](#objects)
 7. [Methods](#methods)
-8. [Arrays](#arrays)
+8. [Arrays](#arrays--loops)
 
 ## Primitive values a.k.a Scalar values
 
