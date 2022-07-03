@@ -526,33 +526,80 @@ for (let index = 0; index <= costs.length - 1; index = index + 1) {
 total; // 49.75
 ```
 
-Let's make it a function:
+There's a lot going on in the `for` loop at first glance, so let's try breaking it down.
+
+For loop has 3 steps which are separated by semicolons `;` inside the parenthesis `()` after `for` keyword.
+The steps in order are `Initialization`, `Condition`, `Update`,
+in the following example, we
+
+1. `Initialize` a `variable` called "index",
+2. Check if the `Condition` is `true`
+
+- For loop runs when the condition evaluates to `true`,
+  so we check if the "index" is smaller or equal to `costs.length - 1`.
+
+3. The for loop then runs the code inside it's body (inside `{}`)
+4. After it runs that code, it then executes the `Update`
+5. Then it does the 2nd step again until the condition returns `false` (If a condition is wrong, it will run forever)
 
 ```js
-const sum = (list, total) => {
-  for (let index = 0; index <= list.length - 1; index = index + 1) {
-    // create variable 'value', assign it with a value read from 'list'
-    let value = list[index];
-
-    // assign 'total' variable a new value by adding 'total' and 'value' together.
-    total = total + value;
-  }
-
-  return total;
-};
-
-const costs = [0.5, 1.25, 7, 9, 32];
-
-sum(costs, 0); // 49.75
+for (
+  let index = 0 /* Initialization step */;
+  index <= costs.length - 1 /* Condition step */;
+  index = index + 1 /* Update step */
+) {}
 ```
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
-
-A little more complex example, would be to have an array of objects.
-We'll call it `transactions`.
+Today though, you'll rarely need the 'classic' `for` loop, most of the time when a loop is performed, it's over an array of data,
+and there are more convenient options than the `for` loop, we could use a `for..of` loop instead.
 
 ```js
-const transactions = [];
+const costs = [0.5, 1.25, 7, 9, 32];
+let total = 0;
+
+// create a for..of loop
+for (let cost of costs) {
+  total = total + cost;
+}
+
+total; // 49.75
+```
+
+Or a `reduce` method like before.
+
+Lastly, I'd like to finish this section with a slightly more complex example, which is pretty common in the 'real world'.
+Imagine we have an array of `transactions`, the transactions are objects that have a `value`.
+Now we'd like to sum up all the transactions and return them.
+
+```js
+const transactions = [
+  {
+    description: "Allowance",
+    value: 200,
+  },
+  {
+    description: "Beer",
+    value: -12,
+  },
+  {
+    description: "Burger",
+    value: -38,
+  },
+  {
+    description: "Cola",
+    value: -8,
+  },
+  {
+    description: "Coffee Beans",
+    value: -95,
+  },
+];
+
+transactions
+  .map((transaction) => transaction.value)
+  .reduce((total, value) => total + value, 0); // 47;
 ```
 
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
