@@ -13,18 +13,22 @@ export const renderTodo = function todoRenderer(list, item, app) {
   li.addEventListener("click", (event) => {
     item.isDone = !item.isDone;
     app.renderTodos();
-    saveTodos();
+    saveTodos(app.todos);
   });
 
   button.addEventListener("click", (event) => {
     event.stopPropagation();
     app.todos = app.todos.filter((todo) => todo !== item);
     app.renderTodos();
-    saveTodos();
+    saveTodos(app.todos);
   });
 
   li.innerText = item.name;
+  li.className = "todo";
+
   button.innerText = "Remove";
+  button.className = "button --danger"
+
   li.appendChild(button);
   list.appendChild(li);
 };
