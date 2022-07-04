@@ -10,3 +10,8 @@
   display: flex;
 }
 
+@media (min-width: 380px) and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+}
