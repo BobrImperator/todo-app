@@ -1,0 +1,14 @@
+.button {
+  border: 2px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.button:hover {
+  background-color: steelblue;
+}
+
+/* http://getbem.com/naming/ */
+.button.--danger:hover {
+  background-color: red;
+}
+
