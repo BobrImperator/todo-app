@@ -1,0 +1,27 @@
+.todo-container {
+  min-width: 200px;
+  min-height: 150px;
+}
+
+.todo-container > h3 {
+  text-transform: uppercase;
+}
+
+.todo:nth-child(even) {
+  background-color: #F4F0C6;
+}
+
+.todo:nth-child(odd) {
+  background-color: #F5F3E6;
+}
+
+.todo:not(:first-child) {
+  margin-top: 10px;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+}
+
+
