@@ -21,17 +21,21 @@ class TodoApp {
   todos;
 
   constructor() {
-    // this.todos = getTodos();
-  
-    // 127.0.0.1 === localhost
-    fetch('http://localhost:8080/todos') // Promise
-      .then((response) => response.json())
-      .then((todos) => {
-        this.todos = todos;
-        this.renderTodos();
-        this.formComponent();
-        this.clearTodosComponent();
-      });
+    this.start(); 
+  }
+
+  async start() {
+    try {
+      let response = await fetch('http://localhost:8080/todos');
+      let todos = await response.json();
+
+      this.todos = todos;
+      this.renderTodos();
+      this.formComponent();
+      this.clearTodosComponent();
+    } catch(error) {
+      console.error(error);
+    }
   }
 
   renderTodos() {
