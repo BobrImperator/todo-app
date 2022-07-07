@@ -56,7 +56,7 @@ class TodoApp {
   formComponent() {
     const todoForm = document.querySelector("[element-form]");
 
-    todoForm.addEventListener("submit", (event) => {
+    todoForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const formData = new FormData(event.target);
@@ -66,13 +66,29 @@ class TodoApp {
       let isDone = formData.get("isDone");
       newTodo.isDone = Boolean(isDone);
 
-      let todoIds = this.todos.map((todo) => todo.id);
-      let maxId = Math.max(...todoIds);
+      // let todoIds = this.todos.map((todo) => todo.id);
+      // let maxId = Math.max(...todoIds);
 
-      newTodo.id = this.todos.length > 0 ? ++maxId : 1;
+      // newTodo.id = this.todos.length > 0 ? ++maxId : 1;
+
+      let response = await fetch('http://localhost:8080/todos', {
+        method: "POST",
+        body: JSON.stringify({
+          is_done: newTodo.isDone,
+          name: newTodo.name,
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      let json = await response.json();
+
+      let todo = new TodoItem();
+      todo.isDone = json.is_done;
+      todo.name = json.name;
 
       event.target.reset();
-      this.todos.push(newTodo);
+      this.todos.push(todo);
       this.renderTodos();
       saveTodos(this.todos);
     });
