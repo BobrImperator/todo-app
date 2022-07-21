@@ -28,6 +28,7 @@ async fn index() -> Result<HttpResponse, Error> {
 async fn get_todos(app: web::Data<Arc<Mutex<TodoApp>>>) -> HttpResponse {
     HttpResponse::Ok()
         .content_type("application/json")
+        .insert_header(("Access-Control-Allow-Origin", "*"))
         .json(app.lock().unwrap().todos.clone())
 }
 
