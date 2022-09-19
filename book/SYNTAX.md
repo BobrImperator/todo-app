@@ -14,6 +14,7 @@ I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to de
 7. [Methods](#methods)
 8. [Arrays](#arrays)
 9. [Loops](#loops)
+10. [Classes](#classes)
 
 ## Primitive values a.k.a Scalar values
 
@@ -47,7 +48,7 @@ Quotes `""`
 Single quotes a.k.a Ticks a.k.a Apostrophe `''`
 
 ```js
-"a string";
+'a string';
 ```
 
 Backticks ```` https://en.wikipedia.org/wiki/Backtick
@@ -286,6 +287,47 @@ Sometimes it's more convenient to create a one-liner function.
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
 
+### Excercises
+
+- Create a named function `hello` that takes 1 argument and returns `"Hello, Bob!"`
+  - Do this also with an anonymous function
+  - concatenate the strings in 2 different ways
+  - e.g. `hello("Bob") // "Hello, Bob!"` 
+  - e.g. `hello("Rob") // "Hello, Rob!"` 
+
+- Create a named function `increment` that takes a number as an argument and returns an incremented argument by 1
+  - Do this also with an arrow function
+  - e.g. `increment(1) // 2`  
+
+### Warmup
+
+- create a variable named user
+- assign a string value saying Rat to the variable
+- create another variable named lastName and assign a value saying Kat
+- concatenate lastName with user
+- console.log() the concatenated string
+- the console log should print "Kat Rat"
+
+```js
+# 1
+let user = "daddy" # Declaration and Assignment;
+user = "dadder" # Assignment
+
+# 2
+let user; # Declaration
+user = "daddy" # Assignment
+```
+
+```js
+let user = "Rat";
+let lastName = "Kat";
+
+let fullName = `${lastName} ${user}`;
+
+console.log(`${lastName} ${user}`) // "Kat Rat";
+console.log(fullName) // "Kat Rat";
+```
+
 ## Objects
 
 `Object` is a data structure that allows to store many `properties`, usually they are used to "describe" some kind of "Entity" like a "User".
@@ -389,6 +431,25 @@ printUser(user); // "Bartłomiej a.k.a BobrImperator"
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+
+### Excercises
+- create a function `sort`
+  - it should accept 2 arguments user object and list of display keys.
+
+```js
+const user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+  age: 24,
+};
+
+function sort(user, displayKeys) {
+ // put code here
+}
+
+console.log(sort(user, ["name", "nickname", "age"])) // "Name: Bartłomiej | nickname: BobrImperator | age: 24"
+console.log(sort(user, ["age", "nickname", "name"])) // "age: 24 | nickname: BobrImperator | name: Bartłomiej"
+```
 
 ## Methods
 
@@ -603,3 +664,13 @@ transactions
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+## Classes
+@TODO
+
+[Back to the top](#syntax-cheatsheet)
+
+@TODO Callbacks
+@TODO Excercises
+@TODO Common syntax errors and what they mean
+@TODO Valid and invalid variable names 
