@@ -299,6 +299,35 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
   - Do this also with an arrow function
   - e.g. `increment(1) // 2`  
 
+### Warmup
+
+- create a variable named user
+- assign a string value saying Rat to the variable
+- create another variable named lastName and assign a value saying Kat
+- concatenate lastName with user
+- console.log() the concatenated string
+- the console log should print "Kat Rat"
+
+```js
+# 1
+let user = "daddy" # Declaration and Assignment;
+user = "dadder" # Assignment
+
+# 2
+let user; # Declaration
+user = "daddy" # Assignment
+```
+
+```js
+let user = "Rat";
+let lastName = "Kat";
+
+let fullName = `${lastName} ${user}`;
+
+console.log(`${lastName} ${user}`) // "Kat Rat";
+console.log(fullName) // "Kat Rat";
+```
+
 ## Objects
 
 `Object` is a data structure that allows to store many `properties`, usually they are used to "describe" some kind of "Entity" like a "User".
@@ -402,6 +431,25 @@ printUser(user); // "Bartłomiej a.k.a BobrImperator"
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+
+### Excercises
+- create a function `sort`
+  - it should accept 2 arguments user object and list of display keys.
+
+```js
+const user = {
+  name: "Bartłomiej",
+  nickname: "BobrImperator",
+  age: 24,
+};
+
+function sort(user, displayKeys) {
+ // put code here
+}
+
+console.log(sort(user, ["name", "nickname", "age"])) // "Name: Bartłomiej | nickname: BobrImperator | age: 24"
+console.log(sort(user, ["age", "nickname", "name"])) // "age: 24 | nickname: BobrImperator | name: Bartłomiej"
+```
 
 ## Methods
 
