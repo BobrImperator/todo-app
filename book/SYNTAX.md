@@ -14,6 +14,7 @@ I'll try to create a cheatsheet for noobs too as JavaScript has a few ways to de
 7. [Methods](#methods)
 8. [Arrays](#arrays)
 9. [Loops](#loops)
+10. [Classes](#classes)
 
 ## Primitive values a.k.a Scalar values
 
@@ -47,7 +48,7 @@ Quotes `""`
 Single quotes a.k.a Ticks a.k.a Apostrophe `''`
 
 ```js
-"a string";
+'a string';
 ```
 
 Backticks ```` https://en.wikipedia.org/wiki/Backtick
@@ -285,6 +286,18 @@ The arrow function doesn't require curly brackets `{}` to define where it's body
 Sometimes it's more convenient to create a one-liner function.
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+
+### Excercises
+
+- Create a named function `hello` that takes 1 argument and returns `"Hello, Bob!"`
+  - Do this also with an anonymous function
+  - concatenate the strings in 2 different ways
+  - e.g. `hello("Bob") // "Hello, Bob!"` 
+  - e.g. `hello("Rob") // "Hello, Rob!"` 
+
+- Create a named function `increment` that takes a number as an argument and returns an incremented argument by 1
+  - Do this also with an arrow function
+  - e.g. `increment(1) // 2`  
 
 ## Objects
 
@@ -603,3 +616,13 @@ transactions
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+## Classes
+@TODO
+
+[Back to the top](#syntax-cheatsheet)
+
+@TODO Callbacks
+@TODO Excercises
+@TODO Common syntax errors and what they mean
+@TODO Valid and invalid variable names 
